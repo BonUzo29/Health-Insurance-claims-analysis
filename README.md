@@ -23,6 +23,7 @@ This project uses Apache Spark to simulate streaming Health insurance data, then
 
 <br>
 <br>
+
 ## Apache Spark output showing new streaming data from spark.
       
             id	claim_amount	provider_type	patient_age	claim_type	procedure_complexity	diagnosis_code	treatment_cost	service_duration	out_of_network
@@ -40,14 +41,10 @@ This project uses Apache Spark to simulate streaming Health insurance data, then
       ...
       .........
 <br>
-<br>      
-
-
-
-
 <br>
 <br>
-## Apache Spark output after applying 3 separate algorthims used to predict the streaming date.
+
+## Apache Spark output after applying 3 separate algorthims used to predict the streaming data.
       
       +---+------------+-------------+-----------+----------+--------------------+--------------+--------------+----------------+--------------+-------------+------------------+-------------+
       |id |claim_amount|provider_type|patient_age|claim_type|procedure_complexity|diagnosis_code|treatment_cost|service_duration|out_of_network|rf_prediction|log_reg_prediction|dt_prediction|
