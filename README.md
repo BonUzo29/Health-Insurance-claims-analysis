@@ -3,7 +3,7 @@
 This project uses Apache Spark to simulate streaming Health insurance data, then it trains 3 models on the streaming data and returns predictions in a new dataframe.
 
 
-1. This contains our spark script mounted on the docker volume we are creating with this command.
+## 1. This contains our spark script mounted on the docker volume we are creating with this command.
 
 ```
       docker run --name pyspark-elyra -it -p 8888:8888 \
@@ -15,11 +15,9 @@ This project uses Apache Spark to simulate streaming Health insurance data, then
 ```
 
 
-2. Submit our Spark script this way.  
+## 2. Submit our Spark script this way.  
 
          spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.1 ./standalone-ml-spark-esemble-claims.py
-
-
 
 <br>
 <br>
