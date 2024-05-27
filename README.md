@@ -4,6 +4,7 @@
 
 This project focuses on detecting fraudulent, legitimate, and suspicious health insurance claims using machine learning models. The project leverages PySpark to handle large datasets and build scalable machine learning pipelines. It includes generating simulated data, preprocessing, training multiple models, and making predictions on new data.
 
+
 ### Features
 
 - **Simulated Data Generation:** Generates a large dataset with random values for various health insurance claim attributes.
