@@ -59,3 +59,92 @@ This project uses Apache Spark to simulate streaming Health insurance data, then
       +---+------------+-------------+-----------+----------+--------------------+--------------+--------------+----------------+--------------+-------------+------------------+-------------+
       |19 |7676.73     |Pharmacy     |25         |Outpatient|Medium              |B002          |975.01        |1               |Yes           |1.0          |1.0               |1.0          |
       +---+------------+-------------+-----------+----------+--------------------+--------------+--------------+----------------+--------------+-------------+------------------+-------------+
+
+
+## We can then use this script (also added to this our GitHub Repository) to evaluate the performance of our saved model.
+
+```
+from pyspark.sql import SparkSession
+from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+from pyspark.ml import PipelineModel
+from pyspark.sql.functions import when, col
+
+# Create SparkSession
+spark = SparkSession.builder \
+    .appName("ModelEvaluation") \
+    .getOrCreate()
+
+# Set log level to OFF
+spark.sparkContext.setLogLevel("OFF")
+
+# Load saved models
+rf_model = PipelineModel.load("rf_model")
+log_reg_model = PipelineModel.load("log_reg_model")
+dt_model = PipelineModel.load("dt_model")
+
+# Load test data
+test_data = spark.read.csv("generated_data.csv", header=True, inferSchema=True)
+
+# Define labels: 0 for legitimate, 1 for fraudulent, 2 for suspicious
+test_data = test_data.withColumn('label', 
+                    when((test_data['claim_amount'] > 5000) | (test_data['provider_type'] == 'Hospital'), 1)
+                    .when((test_data['patient_age'] > 65) & (test_data['claim_type'] == 'Inpatient'), 2)
+                    .otherwise(0))
+
+# Make predictions
+rf_predictions = rf_model.transform(test_data)
+log_reg_predictions = log_reg_model.transform(test_data)
+dt_predictions = dt_model.transform(test_data)
+
+# Evaluate models
+evaluator = MulticlassClassificationEvaluator(labelCol="label", predictionCol="prediction", metricName="weightedPrecision")
+rf_precision = evaluator.evaluate(rf_predictions)
+log_reg_precision = evaluator.evaluate(log_reg_predictions)
+dt_precision = evaluator.evaluate(dt_predictions)
+
+evaluator = MulticlassClassificationEvaluator(labelCol="label", predictionCol="prediction", metricName="weightedRecall")
+rf_recall = evaluator.evaluate(rf_predictions)
+log_reg_recall = evaluator.evaluate(log_reg_predictions)
+dt_recall = evaluator.evaluate(dt_predictions)
+
+evaluator = MulticlassClassificationEvaluator(labelCol="label", predictionCol="prediction", metricName="f1")
+rf_f1 = evaluator.evaluate(rf_predictions)
+log_reg_f1 = evaluator.evaluate(log_reg_predictions)
+dt_f1 = evaluator.evaluate(dt_predictions)
+
+# Print performance metrics
+print("Random Forest Metrics:")
+print("Precision:", rf_precision)
+print("Recall:", rf_recall)
+print("F1-score:", rf_f1)
+print()
+
+print("Logistic Regression Metrics:")
+print("Precision:", log_reg_precision)
+print("Recall:", log_reg_recall)
+print("F1-score:", log_reg_f1)
+print()
+
+print("Decision Tree Metrics:")
+print("Precision:", dt_precision)
+print("Recall:", dt_recall)
+print("F1-score:", dt_f1)
+
+```
+
+When we run the script above, we get this output
+
+      Random Forest Metrics:
+      Precision: 0.99898696080771
+      Recall: 0.9989840000000001
+      F1-score: 0.9989237508481799
+      
+      Logistic Regression Metrics:
+      Precision: 0.7859431760562169
+      Recall: 0.787532
+      F1-score: 0.7866015780591822
+      
+      Decision Tree Metrics:
+      Precision: 0.9904867057003954
+      Recall: 0.9912270000000001
+      F1-score: 0.9907957619832551
