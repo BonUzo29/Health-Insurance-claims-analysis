@@ -339,7 +339,7 @@ The F1-score is the harmonic mean of precision and recall. It provides a balance
       Precision: 0.99898696080771
       Recall: 0.9989840000000001
       F1-score: 0.9989237508481799
-This model has very high precision, recall, and F1-score, indicating that it performs exceptionally well on your test data. It can effectively identify positive cases while minimizing false positives and false negatives.
+This model has very high precision, recall, and F1-score, indicating that it performs exceptionally well on our test data. It can effectively identify positive cases while minimizing false positives and false negatives.
 
 ### Logistic Regression: 
       Logistic Regression Metrics:
