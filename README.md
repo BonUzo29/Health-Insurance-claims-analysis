@@ -30,7 +30,13 @@ This project focuses on detecting fraudulent, legitimate, and suspicious health 
 - PySpark
 
 
+### Installation
 
+Clone the repository:
+
+    git clone https://github.com/BonUzo29/Health-Insurance-claims-analysis.git
+    
+    cd health-insurance-claims-analysis
 
 
 ## Build PySpark Image using this `docker-compose.yaml` file
@@ -83,7 +89,7 @@ networks:
 ```
 
 
-## 1. This contains our spark script mounted on the docker volume we are creating with this command.
+### This contains our spark script mounted on the docker volume we are creating with this command.
 
 ```
       docker run --name pyspark-elyra -it -p 8888:8888 \
@@ -95,16 +101,19 @@ networks:
 ```
 
 
-## 2. Submit our Spark script this way.  
+### Usage 
 
-         spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.1 ./standalone-ml-spark-esemble-claims.py
+After building the docker image of PySpark, we will now use this command to start the script to generate simulated health insurance claim data, preprocess the data and train machine learning models, load the trained models and make predictions on new data:
+
+
+    spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.1 ./standalone-ml-spark-esemble-claims.py
 
 <br>
 <br>
 
 ## Apache Spark output showing new streaming data from spark.
       
-            id	claim_amount	provider_type	patient_age	claim_type	procedure_complexity	diagnosis_code	treatment_cost	service_duration	out_of_network
+     id	claim_amount	provider_type	patient_age	claim_type	procedure_complexity	diagnosis_code	treatment_cost	service_duration	out_of_network
       0	9979.02	Clinic	63	Outpatient	High	A001	2800.28	4	Yes
       1	4167.91	Pharmacy	45	Inpatient	Medium	A001	3425.86	9	No
       2	1334.57	Hospital	23	Outpatient	High	B002	4714.47	5	Yes
