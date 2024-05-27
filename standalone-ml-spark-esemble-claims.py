@@ -104,16 +104,3 @@ while current_row < total_rows:
     predictions_batch.show(truncate=False)
     current_row += batch_size
 
-# Evaluate models and save performance metrics
-evaluator = MulticlassClassificationEvaluator(labelCol="label", predictionCol="prediction", metricName="accuracy")
-rf_accuracy = evaluator.evaluate(rf_predictions)
-log_reg_accuracy = evaluator.evaluate(log_reg_predictions)
-dt_accuracy = evaluator.evaluate(dt_predictions)
-
-with open("model_performance.txt", "w") as f:
-    f.write("Random Forest Accuracy: {:.4f}\n".format(rf_accuracy))
-    f.write("Logistic Regression Accuracy: {:.4f}\n".format(log_reg_accuracy))
-    f.write("Decision Tree Accuracy: {:.4f}\n".format(dt_accuracy))
-
-# Add this line to ensure the file is closed after writing
-f.close()  
