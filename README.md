@@ -1,6 +1,37 @@
 # Health-Insurance-claims-analysis
 
-This project uses Apache Spark to simulate streaming Health insurance data, then it trains 3 models on the streaming data and returns predictions in a new dataframe.
+### Project Overview
+
+This project focuses on detecting fraudulent, legitimate, and suspicious health insurance claims using machine learning models. The project leverages PySpark to handle large datasets and build scalable machine learning pipelines. It includes generating simulated data, preprocessing, training multiple models, and making predictions on new data.
+
+### Features
+
+- **Simulated Data Generation:** Generates a large dataset with random values for various health insurance claim attributes.
+- **Data Preprocessing:** Encodes categorical variables and assembles features into a single vector.
+- **Machine Learning Models:** Implements Random Forest, Logistic Regression, and Decision Tree classifiers.
+- **Model Training:** Trains models on the generated data and saves the trained models for future use.
+- **Predictions:** Makes predictions on new data and outputs the results.
+- **Scalability:** Utilizes PySpark for efficient processing of large datasets.
+
+### Project Structure
+
+- `generate_data.py`: Generates simulated health insurance claim data and saves it as a CSV file.
+- `train_models.py`: Preprocesses the data, trains machine learning models, and saves the trained models.
+- `make_predictions.py`: Loads the trained models and makes predictions on new data.
+- `data/`: Directory to store generated data.
+- `models/`: Directory to store trained models.
+- `output/`: Directory to store prediction results.
+
+### Getting Started
+##### Prerequisites
+
+- Python 3.6+
+- Apache Spark
+- PySpark
+
+
+
+
 
 ## Build PySpark Image using this `docker-compose.yaml` file
 ```
