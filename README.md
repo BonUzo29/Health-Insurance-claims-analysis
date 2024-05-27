@@ -198,31 +198,31 @@ The code above performs the following tasks:
 
 1. Setting up SparkSession: It creates a SparkSession with the application name "HealthInsuranceClaimsDetection".
 
-Generating Simulated Data: It generates simulated data with randomly generated values for each column, such as claim amount, provider type, patient age, claim type, procedure complexity, diagnosis code, treatment cost, service duration, and out-of-network indicator. The generated data is stored in a DataFrame.
+2. Generating Simulated Data: It generates simulated data with randomly generated values for each column, such as claim amount, provider type, patient age, claim type, procedure complexity, diagnosis code, treatment cost, service duration, and out-of-network indicator. The generated data is stored in a DataFrame.
 
-2. Defining Labels: It defines labels for the data based on certain conditions. A claim is labeled as fraudulent if the claim amount exceeds 5000 or if the provider type is a hospital. It labels a claim as suspicious if the patient age is over 65 and the claim type is "Inpatient". Otherwise, it labels the claim as legitimate.
+3. Defining Labels: It defines labels for the data based on certain conditions. A claim is labeled as fraudulent if the claim amount exceeds 5000 or if the provider type is a hospital. It labels a claim as suspicious if the patient age is over 65 and the claim type is "Inpatient". Otherwise, it labels the claim as legitimate.
 
-3. Splitting Data: It splits the data into training and test sets.
+4. Splitting Data: It splits the data into training and test sets.
 
-4. Encoding Categorical Variables: It uses StringIndexer to encode categorical variables into numerical indices.
+5. Encoding Categorical Variables: It uses StringIndexer to encode categorical variables into numerical indices.
 
-5. Defining Vector Assembler: It defines a VectorAssembler to assemble all features into a single vector.
+6. Defining Vector Assembler: It defines a VectorAssembler to assemble all features into a single vector.
 
-6. Defining Machine Learning Models: It defines Random Forest, Logistic Regression, and Decision Tree classifiers.
+7. Defining Machine Learning Models: It defines Random Forest, Logistic Regression, and Decision Tree classifiers.
 
-7. Creating ML Pipelines: It creates ML pipelines for each classifier, including the encoding of categorical variables and assembling features.
+8. Creating ML Pipelines: It creates ML pipelines for each classifier, including the encoding of categorical variables and assembling features.
 
-8. Training Models: It trains the Random Forest, Logistic Regression, and Decision Tree models using the training data.
+9. Training Models: It trains the Random Forest, Logistic Regression, and Decision Tree models using the training data.
 
-9. Saving Trained Models: It saves the trained models to disk.
+10. Saving Trained Models: It saves the trained models to disk.
 
-10. Making Predictions: It makes predictions on the test data using the trained models.
+11. Making Predictions: It makes predictions on the test data using the trained models.
 
-11. Selecting Relevant Columns: It selects relevant columns along with predictions from each model.
+12. Selecting Relevant Columns: It selects relevant columns along with predictions from each model.
 
-12. Saving Predicted Data: It saves the predicted data to a CSV file.
+13. Saving Predicted Data: It saves the predicted data to a CSV file.
 
-13. Printing Predictions: It prints predictions to the console in batches of 5 rows.
+14. Printing Predictions: It prints predictions to the console in batches of 5 rows.
 
     
 
