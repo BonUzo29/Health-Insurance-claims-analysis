@@ -148,3 +148,14 @@ When we run the script above, we get this output
       Precision: 0.9904867057003954
       Recall: 0.9912270000000001
       F1-score: 0.9907957619832551
+
+An explanation of the Precision, Recall and F1-score evaluation metrics is as follows:
+
+### Precision: 
+Precision measures the ratio of correctly predicted positive observations (true positives) to the total predicted positive observations (true positives + false positives). In the context of classification, precision represents the ability of the classifier not to label a negative sample as positive. A high precision indicates a low false positive rate.
+
+### Recall: 
+Recall, also known as sensitivity or true positive rate, measures the ratio of correctly predicted positive observations (true positives) to the total actual positive observations (true positives + false negatives). In the context of classification, recall represents the ability of the classifier to find all positive samples. A high recall indicates a low false negative rate.
+
+### F1-score: 
+The F1-score is the harmonic mean of precision and recall. It provides a single score that balances both precision and recall. The F1-score reaches its best value at 1 (perfect precision and recall) and worst at 0.
