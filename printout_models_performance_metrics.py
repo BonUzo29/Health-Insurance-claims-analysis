@@ -67,25 +67,3 @@ print("Recall:", dt_recall)
 print("F1-score:", dt_f1)
 print()
 
-# Define a function to plot ROC curve
-def plot_roc_curve(predictions, title):
-    results = predictions.select(['probability', 'label']).rdd.map(lambda row: (float(row['probability'][1]), float(row['label'])))
-    metrics = BinaryClassificationMetrics(results)
-    fpr, tpr = metrics.roc()
-    roc_auc = metrics.areaUnderROC
-
-    plt.figure()
-    plt.plot(fpr, tpr, color='darkorange', lw=2, label='ROC curve (area = %0.2f)' % roc_auc)
-    plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
-    plt.xlim([0.0, 1.0])
-    plt.ylim([0.0, 1.05])
-    plt.xlabel('False Positive Rate')
-    plt.ylabel('True Positive Rate')
-    plt.title(title)
-    plt.legend(loc="lower right")
-    plt.show()
-
-# Plot ROC curve for each model
-plot_roc_curve(rf_predictions, "Random Forest ROC Curve")
-plot_roc_curve(log_reg_predictions, "Logistic Regression ROC Curve")
-plot_roc_curve(dt_predictions, "Decision Tree ROC Curve")
