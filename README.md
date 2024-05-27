@@ -65,9 +65,11 @@ This project uses Apache Spark to simulate streaming Health insurance data, then
 
 ```
 from pyspark.sql import SparkSession
-from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+from pyspark.ml.evaluation import MulticlassClassificationEvaluator, BinaryClassificationEvaluator
 from pyspark.ml import PipelineModel
 from pyspark.sql.functions import when, col
+import matplotlib.pyplot as plt
+from pyspark.mllib.evaluation import BinaryClassificationMetrics
 
 # Create SparkSession
 spark = SparkSession.builder \
@@ -129,6 +131,9 @@ print("Decision Tree Metrics:")
 print("Precision:", dt_precision)
 print("Recall:", dt_recall)
 print("F1-score:", dt_f1)
+print()
+
+
 
 ```
 
