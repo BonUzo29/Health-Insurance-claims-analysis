@@ -1,0 +1,66 @@
+# Health-Insurance-claims-analysis
+
+This project uses Apache Spark to simulate streaming Health insurance data, then it trains 3 models on the streaming data and returns predictions in a new dataframe.
+
+
+1. This contains our spark script mounted on the docker volume we are creating with this command.
+
+```
+      docker run --name pyspark-elyra -it -p 8888:8888 \
+      -v /C:/project/Bon_Classifier/final_algorithm:/home/jovyan/work \
+      -v /C:/project/Bon_Classifier/final_algorithm/spark-processed-claims.py:/home/jovyan/work/spark-processed-claims.py \
+      -e KAFKA_ADVERTISED_HOST_NAME=host.docker.internal \
+      -e KAFKA_ADVERTISED_PORT=9092 \
+      -d ruslanmv/pyspark-elyra:3.0.2
+```
+
+
+2. Submit our Spark script this way.  
+
+         spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.1 ./standalone-ml-spark-esemble-claims.py
+
+
+
+<br>
+<br>
+## Apache Spark output showing new streaming data from spark.
+      
+            id	claim_amount	provider_type	patient_age	claim_type	procedure_complexity	diagnosis_code	treatment_cost	service_duration	out_of_network
+      0	9979.02	Clinic	63	Outpatient	High	A001	2800.28	4	Yes
+      1	4167.91	Pharmacy	45	Inpatient	Medium	A001	3425.86	9	No
+      2	1334.57	Hospital	23	Outpatient	High	B002	4714.47	5	Yes
+      3	6693	Hospital	44	Outpatient	High	A001	359.63	7	No
+      4	2576.81	Pharmacy	35	Inpatient	High	A001	1565.87	5	Yes
+      5	5702.05	Clinic	40	Inpatient	Medium	B002	3666.44	5	No
+      6	3947.9	Clinic	36	Inpatient	High	A001	4395.55	4	Yes
+      7	1900.82	Hospital	40	Outpatient	Low	A001	3194.54	7	Yes
+      8	2872.69	Pharmacy	23	Outpatient	Medium	B002	4025.98	3	No
+      ...
+      ....
+      ...
+      .........
+<br>
+<br>      
+
+
+
+
+<br>
+<br>
+## Apache Spark output after applying 3 separate algorthims used to predict the streaming date.
+      
+      +---+------------+-------------+-----------+----------+--------------------+--------------+--------------+----------------+--------------+-------------+------------------+-------------+
+      |id |claim_amount|provider_type|patient_age|claim_type|procedure_complexity|diagnosis_code|treatment_cost|service_duration|out_of_network|rf_prediction|log_reg_prediction|dt_prediction|
+      +---+------------+-------------+-----------+----------+--------------------+--------------+--------------+----------------+--------------+-------------+------------------+-------------+
+      |29 |7898.32     |Hospital     |21         |Inpatient |Low                 |B002          |4988.81       |8               |No            |1.0          |1.0               |1.0          |
+      +---+------------+-------------+-----------+----------+--------------------+--------------+--------------+----------------+--------------+-------------+------------------+-------------+
+      +---+------------+-------------+-----------+----------+--------------------+--------------+--------------+----------------+--------------+-------------+------------------+-------------+
+      |id |claim_amount|provider_type|patient_age|claim_type|procedure_complexity|diagnosis_code|treatment_cost|service_duration|out_of_network|rf_prediction|log_reg_prediction|dt_prediction|
+      +---+------------+-------------+-----------+----------+--------------------+--------------+--------------+----------------+--------------+-------------+------------------+-------------+
+      |23 |1959.75     |Clinic       |33         |Outpatient|Medium              |B002          |249.01        |6               |Yes           |0.0          |0.0               |0.0          |
+      +---+------------+-------------+-----------+----------+--------------------+--------------+--------------+----------------+--------------+-------------+------------------+-------------+
+      ----+----------------+--------------+-------------+------------------+-------------+
+      |id |claim_amount|provider_type|patient_age|claim_type|procedure_complexity|diagnosis_code|treatment_cost|service_duration|out_of_network|rf_prediction|log_reg_prediction|dt_prediction|
+      +---+------------+-------------+-----------+----------+--------------------+--------------+--------------+----------------+--------------+-------------+------------------+-------------+
+      |19 |7676.73     |Pharmacy     |25         |Outpatient|Medium              |B002          |975.01        |1               |Yes           |1.0          |1.0               |1.0          |
+      +---+------------+-------------+-----------+----------+--------------------+--------------+--------------+----------------+--------------+-------------+------------------+-------------+
