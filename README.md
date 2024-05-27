@@ -158,16 +158,34 @@ The `Precision`, `Recall` and `F1-score` values shows the evaluation metrics for
 
 So, specifically, each metric represents:
 
-Precision: Precision is the ratio of correctly predicted positive observations to the total predicted positive observations. In the context of your problem, it represents the ability of the model to correctly identify positive cases (e.g., fraudulent or suspicious claims) out of all the cases it predicted as positive. A higher precision indicates fewer false positives.
+### Precision: 
+Precision is the ratio of correctly predicted positive observations to the total predicted positive observations. In the context of our problem, it represents the ability of the model to correctly identify positive cases (e.g., fraudulent or suspicious claims) out of all the cases it predicted as positive. A higher precision indicates fewer false positives.
 
-Recall: Recall, also known as sensitivity, is the ratio of correctly predicted positive observations to the total actual positive observations. It measures the ability of the model to correctly identify positive cases out of all the actual positive cases. A higher recall indicates fewer false negatives.
+### Recall: 
+Recall, also known as sensitivity, is the ratio of correctly predicted positive observations to the total actual positive observations. It measures the ability of the model to correctly identify positive cases out of all the actual positive cases. A higher recall indicates fewer false negatives.
 
-F1-score: The F1-score is the harmonic mean of precision and recall. It provides a balance between precision and recall, considering both false positives and false negatives. It's a useful metric when you want to compare models across different precision-recall trade-offs.
+### F1-score: 
+The F1-score is the harmonic mean of precision and recall. It provides a balance between precision and recall, considering both false positives and false negatives. It's a useful metric when one wants to compare models across different precision-recall trade-offs.
 
-Now, let's interpret the results:
+### Interpreting the values we got for Precision, Recall and F1-score results:
 
-Random Forest: This model has very high precision, recall, and F1-score, indicating that it performs exceptionally well on your test data. It can effectively identify positive cases while minimizing false positives and false negatives.
+### Random Forest: 
+      Random Forest Metrics:
+      Precision: 0.99898696080771
+      Recall: 0.9989840000000001
+      F1-score: 0.9989237508481799
+This model has very high precision, recall, and F1-score, indicating that it performs exceptionally well on your test data. It can effectively identify positive cases while minimizing false positives and false negatives.
 
-Logistic Regression: The precision, recall, and F1-score for this model are lower compared to Random Forest but still reasonable. It might not perform as well as Random Forest, but it's still a decent model for your task.
+### Logistic Regression: 
+      Logistic Regression Metrics:
+      Precision: 0.7859431760562169
+      Recall: 0.787532
+      F1-score: 0.7866015780591822
+The precision, recall, and F1-score for this model are lower compared to Random Forest but still reasonable. It might not perform as well as Random Forest, but it's still a decent model for our task.
 
- Decision Tree: Similar to Random Forest, Decision Tree also shows high precision, recall, and F1-score. It performs well on your test data, although the scores are slightly lower than those of Random Forest.
+### Decision Tree: 
+      Decision Tree Metrics:
+      Precision: 0.9904867057003954
+      Recall: 0.9912270000000001
+      F1-score: 0.9907957619832551
+Similar to Random Forest, Decision Tree also shows high precision, recall, and F1-score. It performs well on our test data, although the scores are slightly lower than those of Random Forest.
