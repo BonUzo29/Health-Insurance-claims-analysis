@@ -15,12 +15,33 @@ This project focuses on detecting fraudulent, legitimate, and suspicious health 
 
 ### Project Structure
 
-- `generate_data.py`: Generates simulated health insurance claim data and saves it as a CSV file.
-- `train_models.py`: Preprocesses the data, trains machine learning models, and saves the trained models.
-- `make_predictions.py`: Loads the trained models and makes predictions on new data.
-- `data/`: Directory to store generated data.
-- `models/`: Directory to store trained models.
-- `output/`: Directory to store prediction results.
+- `standalone-ml-spark-esemble-claims.py`: Generates simulated health insurance claim data and saves it as a CSV file, preprocesses the data, trains machine learning models, and saves the trained models.
+- `printout_models_performance_metrics.py`: Loads the trained models and makes predictions on new data.
+- `rf_model/`: Directory to store Random Forest Classifier model.
+- `log_reg_model/`: Directory to store Logistic Regression model.
+- `dt_model/`: Directory to store Decision Tree Classifier.
+
+#### Data Generation
+
+The `standalone-ml-spark-esemble-claims.py` script creates a large dataset with 1,000,000 rows, including attributes like claim amount, provider type, patient age, claim type, procedure complexity, diagnosis code, treatment cost, service duration, and out-of-network indicator. Each attribute is generated with random values to simulate real-world scenarios.
+
+#### Data Preprocessing
+
+It then preprocesses the data by encoding categorical variables using StringIndexer and assembling all features into a single vector using VectorAssembler. It then splits the data into training and test sets.
+Model Training
+
+Three machine learning models are trained:
+
+- Random Forest Classifier
+- Logistic Regression
+- Decision Tree Classifier
+
+These models are trained using the training dataset, and the trained models are saved for future use.
+
+#### Making Predictions
+
+The `printout_models_performance_metrics.py` script loads the trained models and makes predictions on new data. The results include predictions from each model and are saved to a CSV file.
+
 
 ### Getting Started
 ##### Prerequisites
