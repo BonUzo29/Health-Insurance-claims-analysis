@@ -77,7 +77,7 @@ For the Decision Tree Classifier:
 
 These conditions below are defined in the following section of the code when the simulated data is being generated:
 
-# Define labels: 0 for legitimate, 1 for fraudulent, 2 for suspicious
+#### Define labels: 0 for legitimate, 1 for fraudulent, 2 for suspicious
 ```
 data = data.withColumn('label', when((data['claim_amount'] > 5000) | (data['provider_type'] == 'Hospital'), 1)
                       .when((data['patient_age'] > 65) & (data['claim_type'] == 'Inpatient'), 2)
